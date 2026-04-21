@@ -62,8 +62,7 @@ async def clear(ctx, cantidad: int):
     await ctx.send(f"{cantidad} mensajes eliminados", delete_after=5)
 
 
-bot_commands = "1. ping: Verificar actividad.\n2. event [Mensaje]: Programar evento.\n"
-               "3. clear [Cantidad]: Limpiar mensajes (admin).\n"
+bot_commands = "1. ping: Verificar actividad.\n2. event [Mensaje]: Programar evento.\n3. clear [Cantidad]: Limpiar mensajes (admin).\n"
 
 
 # Comandos del Bot
