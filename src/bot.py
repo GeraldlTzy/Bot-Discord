@@ -61,13 +61,15 @@ async def clear(ctx, cantidad: int):
     await ctx.channel.purge(limit=cantidad + 1)
     await ctx.send(f"{cantidad} mensajes eliminados", delete_after=5)
 
-
-bot_commands = "1. ping: Verificar actividad.\n2. event [Mensaje]: Programar evento.\n3. clear [Cantidad]: Limpiar mensajes (admin).\n"
-
-
 # Comandos del Bot
 @bot.command()
 async def help(ctx):
-    await ctx.send(f"{bot_commands}")
+    message = (
+            "Comandos:\n"
+            "1. ping: Verificar actividad.\n"
+            "2. event [Mensaje]: Programar evento.\n"
+            "3. clear [Cantidad]: Limpiar mensajes (admin).\n"
+            )
+    await ctx.send(message)
 
 bot.run(TOKEN)
