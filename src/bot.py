@@ -72,4 +72,18 @@ async def help(ctx):
             )
     await ctx.send(message)
 
+# 7ds codes
+@bot.command()
+async def help(ctx):
+    message = (
+            "Comandos del juegos:\n"
+            "WELCOMEORIGIN\n"
+            "ORIGINX\n"
+            "ORIGINDISCORD\n"
+            "ORIGINSTEAM\n"
+            )
+    await ctx.send(message)
+
+
+
 bot.run(TOKEN)
