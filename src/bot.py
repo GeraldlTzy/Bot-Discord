@@ -25,7 +25,9 @@ async def keep_active():
         print("Sigo vivo 👀")
         await asyncio.sleep(300)
 
-bot.loop.create_task(keep_active())
+@bot.event
+async def setup_hook():
+    bot.loop.create_task(keep_active())
 
 # 🚀 Evento: bot listo
 @bot.event
