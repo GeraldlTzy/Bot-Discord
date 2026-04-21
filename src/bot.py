@@ -15,10 +15,10 @@ intents.members = True  # para detectar nuevos usuarios
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# 🔥 Mantener vivo
+# Mantener vivo
 keep_alive()
 
-# 🔁 Actividad fake para evitar sleep
+# Actividad fake para evitar sleep
 async def keep_active():
     await bot.wait_until_ready()
     while not bot.is_closed():
@@ -29,36 +29,46 @@ async def keep_active():
 async def setup_hook():
     bot.loop.create_task(keep_active())
 
-# 🚀 Evento: bot listo
+# Evento: bot listo
 @bot.event
 async def on_ready():
     print(f"Bot listo como {bot.user}")
 
-# 👋 Bienvenida
+# Bienvenida
 @bot.event
 async def on_member_join(member):
     channel = member.guild.system_channel
     if channel:
         await channel.send(f"Bienvenido {member.mention} 🎉")
 
-# 🏓 Comando ping
+# Comando ping
 @bot.command()
 async def ping(ctx):
     await ctx.send("pong 🏓")
 
-# 📅 Crear evento
+# Crear evento
 @bot.command()
-async def evento(ctx, *, nombre):
-    mensaje = await ctx.send(f"📅 **Evento:** {nombre}\n\nReacciona:\n👍 = Voy\n👎 = No voy")
+async def event(ctx, *, nombre):
+    mensaje = await ctx.send(f"🗓️ **Evento:** {nombre}\n\nReacciona:\n👍 = Participo\n👎 = No participo")
 
     await mensaje.add_reaction("👍")
     await mensaje.add_reaction("👎")
 
-# 🧹 Limpiar mensajes (admin)
+# Limpiar mensajes (admin)
 @bot.command()
 @commands.has_permissions(manage_messages=True)
-async def limpiar(ctx, cantidad: int):
+async def clear(ctx, cantidad: int):
     await ctx.channel.purge(limit=cantidad + 1)
-    await ctx.send(f"🧹 {cantidad} mensajes eliminados", delete_after=5)
+    await ctx.send(f"{cantidad} mensajes eliminados", delete_after=5)
+
+
+bot_commands = "1. ping: Verificar actividad.\n2. event [Mensaje]: Programar evento.\n"
+               "3. clear [Cantidad]: Limpiar mensajes (admin).\n"
+
+
+# Comandos del Bot
+@bot.command()
+async def help(ctx):
+    await ctx.send(f"{bot_commands}")
 
 bot.run(TOKEN)
